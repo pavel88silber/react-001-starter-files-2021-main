@@ -2,18 +2,18 @@
 const restaurants = [
   {
     title: 'Hot Burger כפר סבא',
-    url: 'hot-burger-tverskaya',
+    url: 'hot-burger-kfar_saba',
     id: 1
   },
 
   {
     title: 'Hot Burger רעננה',
-    url: 'hot-burger-maroseyka',
+    url: 'hot-burger-raanana',
     id: 2
   },
   {
     title: 'Hot Burger נתניה',
-    url: 'hot-burger-petrovka',
+    url: 'hot-burger-netaniya',
     id: 3
   }
 ];

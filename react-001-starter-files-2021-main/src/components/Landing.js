@@ -10,18 +10,22 @@ class Landing extends React.Component {
     }
     // Property of instance by arrow func
     displayList = () => {
-        // const display = this.state.display
+        // const display = this.state.display  (так не проще)
         const { display } = this.state 
         this.setState({display:!display})
     }
 
+    getTitle = restaurant => {
+        const { title, url} = restaurant  // дисструкеузация
+        // this.setState({title:title, url:url, display: false})  // Получаем новые данные
+        this.setState({title, url, display: false})  // Получаем новые данные
+    }
+
+    goToRestaurant = () => {
+        console.log('Go to Restaurant ' + this.state.title);
+    }
+
     render() {
-
-        console.log(restaurants);
-        restaurants.map(restaurants=>{
-            console.log(restaurants.title);
-        })
-
 
         return(
                 <div className='restaurant_select'>
@@ -30,7 +34,7 @@ class Landing extends React.Component {
                         onClick={this.displayList}
                         className='restaurant_select_top-header font-effect-outline'
                          >
-                            תבחר/י סניף
+                            {this.state.title ? this.state.title : 'תבחר/י סניף' }
                             </div>
                         
                         
@@ -46,15 +50,20 @@ class Landing extends React.Component {
                             <ul>
                                 {restaurants.map(restaurant=>{
                                         return (<li 
-                                            onClick={()=>this.getTitle(restaurant)}
+                                            onClick={ () => this.getTitle(restaurant) }
                                             key={restaurant.id}>{restaurant.title}
                                         </li>
                                         )
                                     })}
-                            </ul>
-                            <button>...המשך/י</button>
-                        </div>
+                                </ul>
+                            </div>
                         ) : null}
+
+                        {/* Show this button IF there is "title" and state.display False */}
+                        { this.state.title && !this.state.display ? (
+                         <button onClick={this.goToRestaurant}>...המשך/י</button> 
+                         ) : null}
+                
                 </div>
                 
 
