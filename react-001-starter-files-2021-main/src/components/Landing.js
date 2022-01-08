@@ -10,6 +10,7 @@ class Landing extends React.Component {
     }
     // Property of instance by arrow func
     displayList = () => {
+        // const display = this.state.display
         const { display } = this.state 
         this.setState({display:!display})
     }
@@ -32,23 +33,28 @@ class Landing extends React.Component {
                             תבחר/י סניף
                             </div>
                         
-                        {/* Comment */}
+                        
                         <div className='arrow_picker'>
                             <div className='arrow_picker-up'></div>
                             <div className='arrow_picker-down'></div>
                         </div>
                     </div>
 
+                    {/* THIS DIV Will be displayed when "display" = true */}
                     {this.state.display ? (
-                    <div className='restaurant_select'>
-                        <ul>
-                            {restaurants.map(restaurant=>{
-                                    return <li key={restaurant.id}>{restaurant.title}</li>
-                                })}
-                        </ul>
-                        <button>...המשך/י</button>
-                    </div>
-                    ) : null}
+                        <div className='restaurant_select'>
+                            <ul>
+                                {restaurants.map(restaurant=>{
+                                        return (<li 
+                                            onClick={()=>this.getTitle(restaurant)}
+                                            key={restaurant.id}>{restaurant.title}
+                                        </li>
+                                        )
+                                    })}
+                            </ul>
+                            <button>...המשך/י</button>
+                        </div>
+                        ) : null}
                 </div>
                 
 
