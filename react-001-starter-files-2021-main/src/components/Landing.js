@@ -3,10 +3,12 @@ import restaurants from '../sample-restaurants'
 
 class Landing extends React.Component {
 
+    // ЧТО ТАКОЕ STATE? Это объект где хранятся данные (эти данные передаются в другие компоненты)
     state = {
         display: false,
         title:'',
-        url:''
+        url:'',
+        name: 'THE BEST EVER BRANCH!'
     }
     // Property of instance by arrow func
     displayList = () => {
@@ -16,9 +18,10 @@ class Landing extends React.Component {
     }
 
     getTitle = restaurant => {
-        const { title, url} = restaurant  // дисструкеузация
-        // this.setState({title:title, url:url, display: false})  // Получаем новые данные
-        this.setState({title, url, display: false})  // Получаем новые данные
+        // const { title: title, url: url} = restaurant  // old
+        const { title, url} = restaurant  // деструктурирование
+        // this.setState({title:title, url:url, display: false})  // Задааем новые данные
+        this.setState({title, url, display: false})  // Задааем новые данные
     }
 
     goToRestaurant = () => {
@@ -28,7 +31,8 @@ class Landing extends React.Component {
     render() {
 
         return(
-                <div className='restaurant_select'>
+                <div className='restaurant_select font-effect-fire-animation'>
+                    <div>{this.state.title == "Hot Burger כפר סבא" ? (this.state.name):null}</div>
                     <div className='restaurant_select_top'>
                         <div 
                         onClick={this.displayList}
