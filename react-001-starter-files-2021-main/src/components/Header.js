@@ -1,5 +1,4 @@
 import React from 'react'
-import Order from './Order'
 
 class Header extends React.Component {
     render() {
@@ -10,12 +9,12 @@ class Header extends React.Component {
 
                         <div className='header-rating'>
                             <div className='header-rating_tag'>דירוג</div>
-                            <div className='header-rating_icon'>++++</div>
+                            <div className='header-rating_icon'>✯✯✯✯✯</div>
                         </div>
                     {/* <Burger /> */}
 
                     <div className='header-divider'></div>
-                    <h1 className='font-effect-fire-animation'>Hot Burgers</h1>
+                    <h1 className='font-effect-fire-animation'>{this.props.title}</h1>
                     <h3>
                         <span>
                             משלוח מהיר
