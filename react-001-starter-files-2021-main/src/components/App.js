@@ -6,6 +6,24 @@ import MenuAdmin from './MenuAdmin'
 
 class App extends React.Component {
 
+    // именно сдесь будем храню все бургеры (главный комп) чтобы юзать везде!
+    state = {
+        burgers: {},
+        order: {}
+    }
+
+    addBurger = (burger) => {
+        console.log('addBurger', burger);
+        // 1. Делаем копию объекта state
+        const burgers = { ...this.state.burgers}
+
+        // 2. Add new burger to burgers 
+        burgers[`burger${Date.now()}`] = burger
+
+        // New burgers object save to state
+        this.setState({burgers})
+    }
+
     render() {
         return(
             <div className='burger-paradise'>
@@ -14,7 +32,8 @@ class App extends React.Component {
                     {/* <Burger /> */}
                 </div>
                 <Order />
-                <MenuAdmin />
+                {/* передаем addBurger в дочерний класс */}
+                <MenuAdmin addBurger={this.addBurger} />
             </div>
         )
     }

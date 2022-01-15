@@ -25,14 +25,15 @@ class Landing extends React.Component {
     }
 
     goToRestaurant = () => {
-        console.log('Go to Restaurant ' + this.state.title);
+        const { url } = this.state
+        this.props.history.push(`/restaurant/${url}`)
     }
 
     render() {
 
         return(
                 <div className='restaurant_select font-effect-fire-animation'>
-                    <div>{this.state.title == "Hot Burger כפר סבא" ? (this.state.name):null}</div>
+                    <div>{this.state.title === "Hot Burger כפר סבא" ? (this.state.name):null}</div>
                     <div className='restaurant_select_top'>
                         <div 
                         onClick={this.displayList}
