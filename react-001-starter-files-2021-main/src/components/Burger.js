@@ -2,6 +2,11 @@ import React from 'react'
 
 class Burger extends React.Component {
 
+    // handleClick = () => {
+    //     // console.log('>>>>>>>>>>', this.props.index);
+    //     this.props.addToOrder(this.props.index)
+    // }
+
     render() {
 
         // const image = this.props.details.image;
@@ -22,7 +27,12 @@ class Burger extends React.Component {
                         <span className='price'>{price} ₪</span>    
                     </h3>
                     <p>{desc}</p>
-                    <button className='buttonOrder' disabled={!isAvailable}>
+                    <button 
+                    className='buttonOrder' 
+                    disabled={!isAvailable}
+                    // onClick={this.props.addToOrder}
+                    onClick={() => this.props.addToOrder(this.props.index)}
+                    >
                         {isAvailable ? 'הזמן/י' : 'חסר במלאי'}
                     </button>
                 </div>

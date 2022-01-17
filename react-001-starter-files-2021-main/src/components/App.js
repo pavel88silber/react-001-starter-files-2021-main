@@ -18,6 +18,17 @@ class App extends React.Component {
         this.setState({burgers: sampleBurgers})
     }
 
+    addToOrder = (key) => {
+        // * Никогда не взаимодействуем на прямую с объектом (делаем его купию)
+        // 1. Делаем копию объекта state
+        const order = {...this.state.order}
+        // 2. Добавить ключ к заказу со знач. 1 либо обновить текущ. знач.
+        order[key] = order[key] + 1 || 1;
+        // 3. New order object save to state object
+        // this.setState({order: order})
+        this.setState({order})
+    };
+
 
     addBurger = (burger) => {
         
@@ -44,11 +55,14 @@ class App extends React.Component {
                         {/* Object.keys чтобы получить все ключи Burgers в новом массиве */}
                         {/* Далее пробежаться с помощья ключей с помощью Map() */}
                         {Object.keys(this.state.burgers).map(key => {
-                            return <Burger 
-                            key={key}
-                            index={key}
-                            details={this.state.burgers[key]}
+                            return (
+                            <Burger 
+                                key={key}
+                                index={key}
+                                addToOrder={this.addToOrder}
+                                details={this.state.burgers[key]}
                              />
+                             )
                         })}
                     </ul>
 
