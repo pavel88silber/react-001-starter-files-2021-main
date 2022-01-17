@@ -9,6 +9,7 @@ class MenuAdmin extends React.Component {
                 <h2>בקרת תפריט</h2>
                 {/* ИЗ APP в MenuAdmin и сюда, притаскиваем addBurger*/}
                 <AddBurgerForm addBurger={this.props.addBurger} />
+                <button onClick={this.props.loadSampleBurgers}>לעלות לתפריט</button>
             </div>
         )
     }
