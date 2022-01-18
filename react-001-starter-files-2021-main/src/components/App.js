@@ -67,7 +67,10 @@ class App extends React.Component {
                     </ul>
 
                 </div>
-                <Order />
+
+                {/* <Order {...this.state} /> */}
+                <Order burgers={this.state.burgers} order={this.state.order} />
+
                 {/* передаем addBurger в дочерний класс */}
                 <MenuAdmin 
                     addBurger={this.addBurger}

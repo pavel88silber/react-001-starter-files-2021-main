@@ -1,7 +1,8 @@
 // Наше меню
 const sampleBurgers = {
   burger1: {
-    name: 'Чизбургер',
+    name: 'Cheese Burger',
+    // name: 'Чизбургер',
     image: '/images/cheese.jpg',
     desc:
       'Классический бургер с бифштексом из 100% говядины с маринованными огурчиками и свежей пшеничной булочкой.',
@@ -10,7 +11,7 @@ const sampleBurgers = {
   },
 
   burger2: {
-    name: 'Чикенбургер',
+    name: 'Chiken Burger',
     image: '/images/chicken.jpg',
     desc:
       'Куриный бургер с добавлением расплавленного сыра, соуса Барбекю и листового салата.',
