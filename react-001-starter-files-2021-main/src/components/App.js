@@ -4,6 +4,7 @@ import Order from './Order'
 import MenuAdmin from './MenuAdmin'
 import Burger from './Burger'
 import sampleBurgers from '../sample-burgers'
+import base from '../base'
 
 
 class App extends React.Component {
@@ -12,6 +13,21 @@ class App extends React.Component {
     state = {
         burgers: {},
         order: {}
+    }
+
+    componentDidMount() {
+        const { params } = this.props.match;
+        this.ref = base.syncState(`${params.restaurantId}/burgers`, {
+            context: this,
+            state: 'burgers' // What to sync with DB
+        })
+    }
+
+    // Если возвращяумся на глав. страницу компонент App обновляется, ножно закрыть связь с базой (закрыть socket)
+    // если Сокеты оставлять открытыми это приводит к утечкам памяти
+    // Для этого используем еще один метод жизненого цикла react
+    componentWillUnmount() {
+        base.removeBinding(this.ref);
     }
 
     loadSampleBurgers = () => {

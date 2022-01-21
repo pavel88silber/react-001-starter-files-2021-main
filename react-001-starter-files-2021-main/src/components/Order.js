@@ -1,4 +1,5 @@
 import React from 'react'
+import Shipment from './Shipment';
 
 class Order extends React.Component {
 
@@ -8,12 +9,12 @@ class Order extends React.Component {
 
         const isAvailable = burger && burger.status === 'available';
         if (!isAvailable) {
-            return <li className='unavailable'>
+            return <li className='unavailable' key={key}>
                 סליחה, {burger ? burger.name : 'המבורגר'} לא זמין זמנית
             </li>
         }
 
-        return <li>
+        return <li key={key}>
                 <span>
                     <span>{count}</span>  
                      _יחידות  <b>{burger.name}</b>  
@@ -44,7 +45,18 @@ class Order extends React.Component {
                     return <li key={key}>{key}</li>
                 })}</ul> */}
                 <ul className='order'>{orderIds.map(this.renderOrder)}</ul>
-                <p align='right' margin='20em'><b>{total} סה"כ</b></p>
+
+                {/* <p align='right'><b>{total} סה"כ</b></p> */}
+
+                {total > 0 ? (
+                    <Shipment total={total} />
+                ) : (
+                    <div className='nothingSelected'>
+                        אנא בחרו מהתפריט
+                    </div>
+                )
+                }
+
             </div>
         )
     }
