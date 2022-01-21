@@ -17,10 +17,26 @@ class App extends React.Component {
 
     componentDidMount() {
         const { params } = this.props.match;
+
+        // Here updating --> state.order from localStorage
+        const localStorageRef = localStorage.getItem(params.restaurantId)
+        // console.log(localStorageRef);
+        if (localStorageRef) {
+            this.setState({ order: JSON.parse(localStorageRef)})
+        }
+
+        // Here updating --> state.burgers
         this.ref = base.syncState(`${params.restaurantId}/burgers`, {
             context: this,
             state: 'burgers' // What to sync with DB
         })
+    }
+
+    // FOR LOCAL STORAGE
+    componentDidUpdate() {
+        const { params } = this.props.match;
+        console.log('Update');
+        localStorage.setItem(params.restaurantId, JSON.stringify(this.state.order));
     }
 
     // Если возвращяумся на глав. страницу компонент App обновляется, ножно закрыть связь с базой (закрыть socket)
