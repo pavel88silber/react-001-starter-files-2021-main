@@ -35,7 +35,7 @@ class App extends React.Component {
     // FOR LOCAL STORAGE
     componentDidUpdate() {
         const { params } = this.props.match;
-        console.log('Update');
+        // console.log('Update');
         localStorage.setItem(params.restaurantId, JSON.stringify(this.state.order));
     }
 
@@ -48,6 +48,15 @@ class App extends React.Component {
 
     loadSampleBurgers = () => {
         this.setState({burgers: sampleBurgers})
+    }
+
+    updateBurger = (key, updatedBurger) => {
+        // 1. Делаем копию объекта state
+        const burgers = { ...this.state.burgers }
+        // 2. Обновляем нужный бургер
+        burgers[key] = updatedBurger;
+        // 3. Записать обнавленный объект burgers в state
+        this.setState({burgers})
     }
 
     addToOrder = (key) => {
@@ -107,6 +116,8 @@ class App extends React.Component {
                 <MenuAdmin 
                     addBurger={this.addBurger}
                     loadSampleBurgers={this.loadSampleBurgers}
+                    burgers={this.state.burgers}
+                    updateBurger={this.updateBurger}
                  />
             </div>
         )
