@@ -7,16 +7,20 @@
 
 .order-enter
   background: red;
-  transition: 2s;
+  transition: 1s;
   transform: translate(-120%);
+  max-height: 0;
   &.order-enter-active
     background: yellow;
     transform: translate(0);
+    max-height: 60px;
+    padding: 2rem 0 !important
 
 .order-exit
   background: blue;
-  transition: 5s;
+  transition: 1s;
   transform: translate(0);
   &.order-exit-active
     background: yellow;
     transform: translate(120%)
+    padding: 0;
