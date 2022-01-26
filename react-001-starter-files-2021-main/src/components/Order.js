@@ -23,7 +23,15 @@ class Order extends React.Component {
                     <span>{count}</span>  
                      _יחידות  <b>{burger.name}</b>  
                     <span> {count * burger.price} ₪</span>
-                    <button className='cancelItem'>&times;</button>
+                    
+                    <button 
+                        onClick={() => 
+                            this.props.deleteFromOrder(key)
+                        } 
+                            className='cancelItem'
+                        >
+                            &times;
+                        </button>
                 </span>
             </li>
     }
