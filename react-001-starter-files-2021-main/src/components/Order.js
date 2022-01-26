@@ -1,5 +1,6 @@
 import React from 'react'
 import Shipment from './Shipment';
+import { TransitionGroup, CSSTransition} from 'react-transition-group'
 
 class Order extends React.Component {
 
@@ -13,27 +14,44 @@ class Order extends React.Component {
 
 
         if (!isAvailable) {
-            return <li className='unavailable' key={key}>
+            return (
+            <CSSTransition 
+                classNames='order' 
+                key={key} 
+                timeout={{ enter: 5000, exit: 5000}}
+            >
+            <li className='unavailable' key={key}>
                 סליחה, {burger ? burger.name : 'המבורגר'} לא זמין זמנית
             </li>
+
+            </CSSTransition>
+            );
         }
 
-        return <li key={key}>
-                <span>
-                    <span>{count}</span>  
-                     _יחידות  <b>{burger.name}</b>  
-                    <span> {count * burger.price} ₪</span>
-                    
-                    <button 
-                        onClick={() => 
-                            this.props.deleteFromOrder(key)
-                        } 
-                            className='cancelItem'
-                        >
-                            &times;
-                        </button>
-                </span>
-            </li>
+        return (
+            <CSSTransition 
+                classNames='order' 
+                key={key} 
+                timeout={{ enter: 5000, exit: 5000}}
+            >
+                <li key={key}>
+                    <span>
+                        <span>{count}</span>  
+                        _יחידות  <b>{burger.name}</b>  
+                        <span> {count * burger.price} ₪</span>
+
+                        <button 
+                            onClick={() => 
+                                this.props.deleteFromOrder(key)
+                            } 
+                                className='cancelItem'
+                            >
+                                &times;
+                            </button>
+                    </span>
+                </li>
+            </CSSTransition>
+        )
     }
 
     
@@ -53,10 +71,14 @@ class Order extends React.Component {
         return(
             <div className='order-wrap'>
                 <h2>הזמנה שלך</h2>
+
                 {/* <ul className='order'>{orderIds.map(key  => {
                     return <li key={key}>{key}</li>
                 })}</ul> */}
-                <ul className='order'>{orderIds.map(this.renderOrder)}</ul>
+
+                <TransitionGroup component ='ul' className='order'>
+                    {orderIds.map(this.renderOrder)}
+                </TransitionGroup>
 
                 {/* <p align='right'><b>{total} סה"כ</b></p> */}
 
