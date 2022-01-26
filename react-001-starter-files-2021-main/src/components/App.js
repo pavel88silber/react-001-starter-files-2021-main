@@ -58,6 +58,15 @@ class App extends React.Component {
         // 3. Записать обнавленный объект burgers в state
         this.setState({burgers})
     }
+    
+    deleteBurger = (key) => {
+        // 1. Делаем копию объекта state
+        const burgers = { ...this.state.burgers }
+        // 2. Удаляем нужный бургер
+        burgers[key] = null;
+        // 3. Записать обнавленный объект burgers в state
+        this.setState({ burgers }); 
+    }
 
     addToOrder = (key) => {
         // * Никогда не взаимодействуем на прямую с объектом (делаем его купию)
@@ -118,6 +127,7 @@ class App extends React.Component {
                     loadSampleBurgers={this.loadSampleBurgers}
                     burgers={this.state.burgers}
                     updateBurger={this.updateBurger}
+                    deleteBurger={this.deleteBurger}
                  />
             </div>
         )
