@@ -1,24 +1,37 @@
 .order-enter {
-  background: #f00;
-  transition: 1s;
+  transition: 0.5s;
   transform: translate(-120%);
   max-height: 0;
 }
 .order-enter.order-enter-active {
-  background: #ff0;
-  transform: translate(0);
+  transform: translateX(0);
   max-height: 60px;
   padding: 2rem 0 !important;
 }
 .order-exit {
-  background: #00f;
-  transition: 1s;
+  transition: 0.5s;
   transform: translate(0);
 }
 .order-exit.order-exit-active {
-  background: #ff0;
-  transform: translate(120%);
+  transform: translateX(120%);
   padding: 0;
+}
+.count-enter {
+  transition: 0.5s;
+  transform: translateY(100%);
+}
+.count-enter.count-enter-active {
+  transform: translateY(0);
+}
+.count-exit {
+  transition: 0.5s;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  transform: translateY(0);
+}
+.count-exit.count-exit-active {
+  transform: translateY(-100%);
 }
 article,
 aside,
