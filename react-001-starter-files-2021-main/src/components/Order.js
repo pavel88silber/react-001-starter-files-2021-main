@@ -7,8 +7,12 @@ class Order extends React.Component {
     renderOrder = key => {
         const burger = this.props.burgers[key];
         const count = this.props.order[key];
-
         const isAvailable = burger && burger.status === 'available';
+        const transitionOptions = {
+            classNames: 'order',
+            key,
+            timeout: { enter: 500, exit: 500 }
+        };
 
         if(!burger) return null;
 
@@ -29,22 +33,14 @@ class Order extends React.Component {
         }
 
         return (
-            <CSSTransition 
-                classNames='order' 
-                key={key} 
-                timeout={{ enter: 500, exit: 500}}
-            >
+            <CSSTransition {...transitionOptions}>
                 <li key={key}>
                     <span>
                         <TransitionGroup 
                             component='span'
                             className='count'
                         >
-                            <CSSTransition
-                                classNames='count'
-                                key={count}
-                                timeout={{enter:500, exit:500}}
-                                >
+                            <CSSTransition  {...transitionOptions}>
                                <span>{count}</span> 
                             </CSSTransition>
                         </TransitionGroup>
