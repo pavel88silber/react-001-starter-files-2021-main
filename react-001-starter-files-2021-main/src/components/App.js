@@ -106,7 +106,7 @@ class App extends React.Component {
         return(
             <div className='burger-paradise'>
                 <div className='menu'>
-                    <Header title="HOT BURGERS" />
+                    <Header title={`Pavel's Burgers`} />
 
                     {/* BURGERS LIST */}
                     <ul className='burgers'>
