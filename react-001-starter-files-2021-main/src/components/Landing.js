@@ -1,7 +1,12 @@
 import React from 'react'
 import restaurants from '../sample-restaurants'
+import PropTypes from 'prop-types'
 
 class Landing extends React.Component {
+
+    static propTypes = {
+        history: PropTypes.object
+    }
 
     // ЧТО ТАКОЕ STATE? Это объект где хранятся данные (эти данные передаются в другие компоненты)
     state = {
