@@ -28,7 +28,8 @@ class Shipment extends React.Component {
                         <div className="total_wrap-free">
                             {total < 500 ? `הזמנו עוד ב  ${500-total}₪ למשלוח ב₪99` 
                             : null}
-                        </div>
+                        </
+                        div>
                     </div>
                     <div className='total_wrap-final'>
                         סה"כ ₪{total}

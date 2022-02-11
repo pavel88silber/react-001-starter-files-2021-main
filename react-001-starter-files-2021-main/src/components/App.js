@@ -6,6 +6,7 @@ import MenuAdmin from './MenuAdmin'
 import Burger from './Burger'
 import sampleBurgers from '../sample-burgers'
 import base from '../base'
+import SignIn from './Auth/SignIn'
 
 
 class App extends React.Component {
@@ -109,45 +110,47 @@ class App extends React.Component {
 
     render() {
         return(
-            <div className='burger-paradise'>
-                <div className='menu'>
-                    <Header title={`Pavel's Burgers`} />
+            <SignIn>
+                <div className='burger-paradise'>
+                    <div className='menu'>
+                        <Header title={`Pavel's Burgers`} />
 
-                    {/* BURGERS LIST */}
-                    <ul className='burgers'>
-                        {/* Пробежатся по объекту */}
-                        {/* Object.keys чтобы получить все ключи Burgers в новом массиве */}
-                        {/* Далее пробежаться с помощья ключей с помощью Map() */}
-                        {Object.keys(this.state.burgers).map(key => {
-                            return (
-                            <Burger 
-                                key={key}
-                                index={key}
-                                addToOrder={this.addToOrder}
-                                details={this.state.burgers[key]}
-                             />
-                             )
-                        })}
-                    </ul>
+                        {/* BURGERS LIST */}
+                        <ul className='burgers'>
+                            {/* Пробежатся по объекту */}
+                            {/* Object.keys чтобы получить все ключи Burgers в новом массиве */}
+                            {/* Далее пробежаться с помощья ключей с помощью Map() */}
+                            {Object.keys(this.state.burgers).map(key => {
+                                return (
+                                <Burger 
+                                    key={key}
+                                    index={key}
+                                    addToOrder={this.addToOrder}
+                                    details={this.state.burgers[key]}
+                                />
+                                )
+                            })}
+                        </ul>
 
+                    </div>
+
+                    {/* <Order {...this.state} /> */}
+                    <Order 
+                        burgers={this.state.burgers} 
+                        order={this.state.order} 
+                        deleteFromOrder={this.deleteFromOrder}
+                    />
+
+                    {/* передаем addBurger в дочерний класс */}
+                    <MenuAdmin 
+                        addBurger={this.addBurger}
+                        loadSampleBurgers={this.loadSampleBurgers}
+                        burgers={this.state.burgers}
+                        updateBurger={this.updateBurger}
+                        deleteBurger={this.deleteBurger}
+                    />
                 </div>
-
-                {/* <Order {...this.state} /> */}
-                <Order 
-                    burgers={this.state.burgers} 
-                    order={this.state.order} 
-                    deleteFromOrder={this.deleteFromOrder}
-                />
-
-                {/* передаем addBurger в дочерний класс */}
-                <MenuAdmin 
-                    addBurger={this.addBurger}
-                    loadSampleBurgers={this.loadSampleBurgers}
-                    burgers={this.state.burgers}
-                    updateBurger={this.updateBurger}
-                    deleteBurger={this.deleteBurger}
-                 />
-            </div>
+            </SignIn>
         )
     }
 }
