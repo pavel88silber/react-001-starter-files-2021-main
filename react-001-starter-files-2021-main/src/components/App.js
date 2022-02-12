@@ -6,6 +6,7 @@ import MenuAdmin from './MenuAdmin';
 import Burger from './Burger';
 import sampleBurgers from '../sample-burgers';
 import base from '../base';
+import firebase from 'firebase/app';
 import SignIn from './Auth/SignIn';
 
 class App extends React.Component {
@@ -107,6 +108,11 @@ class App extends React.Component {
         this.setState({ order});
     }
 
+    handleLogout = async () => {
+        await firebase.auth().signOut();
+        window.location.reload();
+    };
+
     render() {
         return(
             <SignIn>
@@ -147,6 +153,7 @@ class App extends React.Component {
                         burgers={this.state.burgers}
                         updateBurger={this.updateBurger}
                         deleteBurger={this.deleteBurger}
+                        handleLogout={this.handleLogout}
                     />
                 </div>
             </SignIn>

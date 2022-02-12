@@ -8,6 +8,16 @@ class SignIn extends React.Component {
         user: ''
     }
 
+    // On page restarting -> Google Firebase --> request (user)
+    // if registered
+    componentDidMount() {
+        firebase.auth().onAuthStateChanged(user => {
+            if (user) {
+                this.authHandler({user})
+            }
+        })
+    }
+
     authHandler = async authData => {
         const {email} = authData.user;
         this.setState({user: email});

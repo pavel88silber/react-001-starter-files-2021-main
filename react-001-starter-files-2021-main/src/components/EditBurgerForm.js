@@ -28,7 +28,7 @@ class EditBurgerForm extends React.Component {
             [event.currentTarget.name]:
                 event.currentTarget.name === 'price'
                 ? parseFloat(event.currentTarget.value) || 0
-                : event.currentTarget.value
+                : parseFloat(event.currentTarget.value)
 
         }
 
