@@ -6,9 +6,9 @@ const Login = (props) => {
     return(
         <div className='login-container'>
             <nav className="login">
-                <h2>הרשאה</h2>
+                <h2>הרשאת כניסה לאתר</h2>
                 <p>הכנס שם משתמש וסיסמה</p>
-                <button className="github" onClick={() => props.authenticate}>
+                <button className='github' onClick={() => props.authenticate()}>
                     כניסה
                 </button>
             </nav>
